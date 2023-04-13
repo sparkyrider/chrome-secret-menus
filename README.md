@@ -1,7 +1,7 @@
 
 # ⚙️🕵️‍♂️ Hidden/Secret Browser Menus & Settings:
 
-#### Secret Browser Menus are available on most Chromium-based browsers, including: 
+### Secret Browser Menus are available on most Chromium-based browsers, including: 
  - **Google Chrome** (List Available: brave://chrome-urls/)
  - **Microsoft Edge** (List Available: edge://edge-urls)
  - **Brave Browser** (List Available: brave://chrome-urls/)
