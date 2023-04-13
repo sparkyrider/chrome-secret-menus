@@ -6,7 +6,10 @@
  - **Microsoft Edge** (List Available: edge://edge-urls)
  - **Brave Browser** (List Available: brave://chrome-urls/)
 
-<img src="https://user-images.githubusercontent.com/16215564/231866424-1ad5a6fe-5818-4bbf-abf0-0b21936c0258.png" width=450px>
+> @ThioJoe has a great video on the subject. 
+> "[The Secret Chrome Menus](https://www.youtube.com/watch?v=EJGvfDinUOY)" 
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=EJGvfDinUOY " target="_blank"><img src="http://img.youtube.com/vi/EJGvfDinUOY/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 In these browsers, there is a collection of secret menus and diagnostic pages that are hidden from regular users. These pages can be accessed through special URLs starting with "`chrome://`". These URLs allow you to access various browser settings, diagnostic tools, and hidden features not available through the standard settings menu. Below, you will find a comprehensive list of these secret menus along with a brief description of each URL. 
 
