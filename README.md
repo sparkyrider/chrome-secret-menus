@@ -1,121 +1,152 @@
+# ⚙️🕵️‍♂️ Hidden/Secret Browser Menus & Settings (Updated Oct 2025)
 
-# ⚙️🕵️‍♂️ Hidden/Secret Browser Menus & Settings:
+Secret/hidden internal pages exist across Chromium-based browsers and are accessed with `chrome://` (Chrome/Brave) or `edge://` (Microsoft Edge). These pages expose diagnostics, experiments, performance tools, and troubleshooting utilities that aren’t always visible in standard settings.
 
-### Secret Browser Menus are available on most Chromium-based browsers, including: 
- - **Google Chrome** (List Available: brave://chrome-urls/)
- - **Microsoft Edge** (List Available: edge://edge-urls)
- - **Brave Browser** (List Available: brave://chrome-urls/)
+> **Authoritative Lists:**  
+> - Chrome/Brave: `chrome://chrome-urls` (alias: `chrome://about`)  
+> - Edge: `edge://edge-urls`
 
-> @ThioJoe has a great video on the subject. 
-> "[The Secret Chrome Menus](https://www.youtube.com/watch?v=EJGvfDinUOY)" 
+---
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=EJGvfDinUOY " target="_blank"><img src="http://img.youtube.com/vi/EJGvfDinUOY/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+## Legend / Notes
 
-In these browsers, there is a collection of secret menus and diagnostic pages that are hidden from regular users. These pages can be accessed through special URLs starting with "`chrome://`". These URLs allow you to access various browser settings, diagnostic tools, and hidden features not available through the standard settings menu. Below, you will find a comprehensive list of these secret menus along with a brief description of each URL. 
+- **[Stable]**: Generally available in current desktop builds.
+- **[Legacy]**: Still present, but tied to features being deprecated.
+- **[Build/Flag-gated]**: May require a specific OS/build/channel or a feature flag; may be hidden by enterprise policy.
+- **[Deprecated]**: Removed or non-functional in current Chrome; keep for historical context with a pointer to replacements.
 
-Explore the table to discover more hidden features and diagnostic tools that can enhance your browsing experience and help you troubleshoot issues.
-## Secret or Hidden Browser Menus:
+> ⚠️ **Enterprise**: Admin policies can hide or disable some internal URLs.  
+> 🧭 **Per-version variability**: Items can move, be renamed, or vanish between releases. Always verify on your installed version via `chrome://chrome-urls` / `edge://edge-urls`.
 
-| URL                                      | Description                                                                                                                                                 |
-|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| chrome://about                           | Provides a list of all Chrome URLs, including ones for troubleshooting and diagnostics.                                                                    |
-| chrome://accessibility                   | Displays accessibility features in Chrome and their current status.                                                                                        |
-| chrome://app-service-internals           | Displays details about app services used by Chrome browser.                                                                                                |
-| chrome://app-settings                    | Provides settings for installed Chrome apps.                                                                                                                |
-| chrome://apps                            | Displays a list of installed Chrome apps.                                                                                                                   |
-| chrome://attribution-internals           | Shows information about Chrome's installation attributions.                                                                                                |
-| chrome://autofill-internals              | Displays information about the autofill feature in Chrome, including saved data and recent events.                                                         |
-| chrome://blob-internals                  | Provides information about Blob data objects stored in Chrome.                                                                                             |
-| chrome://bluetooth-internals             | Displays information about Bluetooth devices and services connected to Chrome.                                                                             |
-| chrome://bookmarks                       | Shows the bookmarks saved in Chrome.                                                                                                                        |
-| chrome://chrome-urls                     | Lists all Chrome URLs, including diagnostic and debug pages.                                                                                               |
-| chrome://components                      | Displays a list of installed components and allows you to update them individually.                                                                         |
-| chrome://connectors-internals            | Provides information about Google Drive connectors.                                                                                                         |
-| chrome://crashes                         | Shows a list of recent Chrome crashes and their details.                                                                                                    |
-| chrome://credits                         | Lists the open-source software and licenses used by Chrome.                                                                                                |
-| chrome://device-log                      | Displays a log of connected devices and their events in Chrome.                                                                                             |
-| chrome://dino                            | Opens the Chrome Dino game, which can be played offline.                                                                                                   |
-| chrome://discards                        | Shows information about tabs and their discarding status to save memory.                                                                                    |
-| chrome://download-internals              | Displays information about Chrome's download system, including active and completed downloads.                                                              |
-| chrome://downloads                       | Shows a list of your downloaded files in Chrome.                                                                                                            |
-| chrome://extensions                      | Lists all installed extensions and allows you to manage them.                                                                                               |
-| chrome://extensions-internals            | Provides diagnostic information about installed extensions.                                                                                                 |
-| chrome://flags                           | Shows experimental features and settings that can be enabled or disabled in Chrome.                                                                         |
-| chrome://gcm-internals                   | Displays information about the Google Cloud Messaging system used by Chrome.                                                                               |
-| chrome://gpu                             | Provides information about your graphics processing unit (GPU) and its usage by Chrome.                                                                    |
-| chrome://help                            | Opens the Chrome help page, providing information and support resources.                                                                                   |
-| chrome://histograms                      | Displays Chrome's performance histograms.                                                                                                                   |
-| chrome://history                         | Shows your browsing history in Chrome.                                                                                                                      |
-| chrome://history-clusters-internals      | Displays diagnostic information about the history clusters feature in Chrome.                                                                              |
-| chrome://indexeddb-internals             | Provides information about the IndexedDB storage used by Chrome.                                                                                           |
-| chrome://inspect                         | Allows you to inspect and debug running apps, extensions, and web pages.                                                                                   |
-| chrome://interstitials                   | Provides a list of interstitial warning pages used by Chrome, such as SSL certificate errors.                                                              |
-| chrome://invalidations                   | Displays diagnostic information about the invalidation system used for Chrome sync.                                                                        |
-| chrome://local-state                     | Shows Chrome's local state file, which contains various settings and configurations.                                                                       |
-| chrome://management                      | Provides an interface for managing Chrome in an enterprise or education environment.                                                                        |
-| chrome://media-engagement                | Displays media engagement scores for visited websites, which determine video autoplay policies.                                                            |
-| chrome://media-internals                 | Provides information about media playback and events in Chrome.                                                                                            |
-| chrome://metrics-internals               | Displays Chrome's internal metrics data.                                                                                                                    |
-| chrome://net-export                      | Allows you to capture network traffic logs from Chrome.                                                                                                     |
-| chrome://net-internals                   | Provides diagnostic information about Chrome's network stack.                                                                                               |
-| chrome://network-errors                  | Lists various network error pages used by Chrome.                                                                                                           |
-| chrome://new-tab-page                    | Opens the default New Tab page in Chrome.                                                                                                                   |
-| chrome://new-tab-page-third-party        | Opens the third-party New Tab page in Chrome if one is set.                                                                                                 |
-| chrome://newtab                          | Opens a new tab in Chrome.                                                                                                                                  |
-| chrome://ntp-tiles-internals             | Provides diagnostic information about the New Tab page's site tiles.                                                                                        |
-| chrome://omnibox                         | Displays information about Chrome's address bar predictions and suggestions.                                                                                |
-| chrome://optimization-guide-internals    | Provides information about Chrome's optimization guide, which suggests performance improvements for websites.                                              |
-| chrome://password-manager                | Displays a list of saved passwords and associated websites in Chrome.                                                                                       |
-| chrome://password-manager-internals      | Provides diagnostic information about the password manager in Chrome.                                                                                       |
-| chrome://policy                          | Shows the policies applied to your Chrome installation, such as those set by an organization.                                                              |
-| chrome://predictors                      | Displays information about Chrome's URL prediction and autocomplete system.                                                                                 |
-| chrome://prefs-internals                 | Provides diagnostic information about Chrome's preferences system.                                                                                          |
-| chrome://print                           | Opens the print dialog for the current page in Chrome.                                                                                                      |
-| chrome://private-aggregation-internals   | Displays diagnostic information about the private aggregation system used by Chrome.                                                                        |
-| chrome://process-internals               | Provides information about Chrome's running processes.                                                                                                      |
-| chrome://profile-internals               | Displays diagnostic information about the active Chrome user profile.                                                                                       |
-| chrome://quota-internals                 | Provides information about storage quotas and usage in Chrome.                                                                                              |
-| chrome://safe-browsing                   | Displays information about Chrome's Safe Browsing system, which protects users from malicious websites.                                                    |
-| chrome://serviceworker-internals         | Provides information about active service workers in Chrome.                                                                                                |
-| chrome://settings                        | Opens Chrome's settings page.                                                                                                                               |
-| chrome://signin-internals                | Displays diagnostic information about Chrome's sign-in system.                                                                                              |
-| chrome://site-engagement                 | Shows the site engagement scores for visited websites, which influence various browser features.                                                           |
-| chrome://sync-internals                  | Provides diagnostic information about Chrome's sync system.                                                                                                 |
-| chrome://system                          | Displays system information related to Chrome, such as OS version, memory usage, and more.                                                                  |
-| chrome://terms                           | Displays Chrome's terms of service.                                                                                                                         |
-| chrome://topics-internals                | Provides diagnostic information about the topics feature in Chrome.                                                                                        |
-| chrome://tracing                         | Allows you to capture performance traces of Chrome's activity.                                                                                              |
-| chrome://translate-internals             | Displays information about Chrome's built-in translation feature.                                                                                           |
-| chrome://ukm                             | Provides diagnostic information about Chrome's usage statistics reporting system (UKM).                                                                    |
-| chrome://usb-internals                   | Displays information about connected USB devices and their events in Chrome.                                                                                |
-| chrome://user-actions                    | Displays a log of user actions in Chrome.                                                                                                                   |
-| chrome://version                         | Shows detailed version information for Chrome, including version number, build, and platform details.                                                       |
-| chrome://web-app-internals               | Provides diagnostic information about installed web apps.                                                                                                   |
-| chrome://webrtc-internals                | Displays diagnostic information about WebRTC, which enables real-time communication in web browsers.                                                        |
-| chrome://webrtc-logs                     | Provides access to WebRTC logs in Chrome.                                                                                                                   |
-| chrome://whats-new                       | Shows a list of new features and changes in recent Chrome updates.                                                                                          |
-| chrome://internals/session-service       | Displays diagnostic information about Chrome's session service.                                                                                             |
+---
 
-### Hidden Debug Menus:
+## Quick Updates Since 2023
 
-> The following pages are for debugging purposes only. They can crash or
-> hang the renderer and must be entered manually into the address bar.
+- **New:** `chrome://settings/performance` (Memory Saver modes, performance alerts).  
+- **New-ish:** `chrome://privacy-sandbox-internals` (diagnostics for Privacy Sandbox features).  
+- **Clarified:** `chrome://site-engagement` description (engagement scores influence certain heuristics like autoplay).  
+- **GCM → FCM:** `chrome://gcm-internals` now references Firebase Cloud Messaging.  
+- **Deprecated:** `chrome://net-internals` (use `chrome://net-export` + DevTools Network).
 
-| URL                                      | Description                                                                                                                                                 |
-|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| chrome://badcastcrash/                   | Crashes the browser with a bad cast.                                                                                                                        |
-| chrome://inducebrowsercrashforrealz/     | Intentionally crashes the browser.                                                                                                                          |
-| chrome://inducebrowserdcheckforrealz/    | Intentionally causes a browser DCHECK.                                                                                                                      |
-| chrome://crash/                          | Crashes the current tab.                                                                                                                                    |
-| chrome://crashdump/                      | Crashes the browser and generates a crash dump.                                                                                                             |
-| chrome://kill/                           | Kills the current tab.                                                                                                                                      |
-| chrome://hang/                           | Causes the current tab to hang.                                                                                                                             |
-| chrome://shorthang/                      | Causes the current tab to hang for a short time.                                                                                                            |
-| chrome://gpuclean/                       | Causes a GPU clean exit.                                                                                                                                    |
-| chrome://gpucrash/                       | Causes a GPU crash.                                                                                                                                         |
-| chrome://gpuhang/                        | Causes a GPU hang.                                                                                                                                          |
-| chrome://memory-exhaust/                 | Exhausts memory.                                                                                                                                            |
-| chrome://memory-pressure-critical/       | Simulates critical memory pressure.                                                                                                                         |
-| chrome://memory-pressure-moderate/       | Simulates moderate memory pressure.                                                                                                                         |
-| chrome://quit/                           | Exits the browser.                                                                                                                                          |
-| chrome://restart/                        | Restarts the browser.                                                                                                                                       |
+---
+
+## Core Menus & Diagnostics (Chrome/Brave unless noted)
+
+| URL | Status | Description |
+|---|---|---|
+| `chrome://chrome-urls` | [Stable] | Master list of internal pages (alias: `chrome://about`). |
+| `chrome://version` | [Stable] | Full build/channel/OS, JavaScript & user agent info, command-line switches. |
+| `chrome://settings` | [Stable] | Main settings hub. |
+| `chrome://settings/performance` | **[Stable]** | Performance settings: Memory Saver (modes), performance issue alerts, keep-active site list. |
+| `chrome://flags` | [Stable] | Experimental features (per-version; flags change frequently). |
+| `chrome://gpu` | [Stable] | GPU capabilities, feature status, driver workarounds. |
+| `chrome://components` | [Stable] | Installed components (Widevine, CRLSets, etc.) with update controls. |
+| `chrome://crashes` | [Stable] | Local crash history (requires crash reporting). |
+| `chrome://histograms` | [Stable] | Internal metrics histograms. |
+| `chrome://system` | [Stable] | OS/Chrome system info snapshot. |
+| `chrome://tracing` | [Build/Flag-gated] | Low-level performance tracing (record/view traces). |
+| `chrome://webrtc-internals` | [Stable] | WebRTC session stats, getUserMedia info, event logs. |
+| `chrome://webrtc-logs` | [Stable] | Access collected WebRTC logs. |
+| `chrome://media-internals` | [Stable] | Media pipeline details, playback events/errors. |
+| `chrome://media-engagement` | [Stable] | Media engagement scores per origin. |
+| `chrome://site-engagement` | **[Stable]** | Overall site engagement scores (0–100) per origin; used by some heuristics (e.g., autoplay). |
+| `chrome://password-manager` | [Stable] | Password Manager UI. |
+| `chrome://password-manager-internals` | [Stable] | Diagnostics for credential storage/filling. |
+| `chrome://sync-internals` | [Stable] | Sync transport status, types, errors. |
+| `chrome://signin-internals` | [Stable] | Account and token diagnostics. |
+| `chrome://policy` | [Stable] | Active enterprise/user policies. |
+| `chrome://management` | [Stable] | Shows if the browser is managed and by whom. |
+| `chrome://safe-browsing` | [Stable] | Safe Browsing state and diagnostics. |
+| `chrome://translate-internals` | [Stable] | Translate language packs, events, decisions. |
+| `chrome://bluetooth-internals` | [Stable] | BLE device scanning, GATT info. |
+| `chrome://usb-internals` | [Stable] | USB discovery, permissions, test transfers. |
+| `chrome://indexeddb-internals` | [Stable] | Origin DB enumeration and details. |
+| `chrome://quota-internals` | [Stable] | Storage quotas and usage by origin. |
+| `chrome://ntp-tiles-internals` | [Stable] | New Tab Page tile diagnostics. |
+| `chrome://omnibox` | [Stable] | Autocomplete prediction/debug UI. |
+| `chrome://predictors` | [Stable] | Resource prediction, preconnect hints. |
+| `chrome://prefs-internals` | [Stable] | Pref store debug view (policy/sync/local). |
+| `chrome://metrics-internals` | [Stable] | UMA/UKM metrics info and logs. |
+| `chrome://ukm` | [Stable] | Usage Keyed Metrics details. |
+| `chrome://history` | [Stable] | History UI. |
+| `chrome://downloads` | [Stable] | Downloads UI. |
+| `chrome://download-internals` | [Stable] | Download service tasks, states, history. |
+| `chrome://device-log` | [Stable] | Device (USB/Bluetooth/etc.) event logs. |
+| `chrome://process-internals` | [Stable] | Process model debugging overview. |
+| `chrome://profile-internals` | [Stable] | Active profile diagnostics. |
+| `chrome://interstitials` | [Stable] | Lists warning interstitials (SSL, lookalike, etc.). |
+| `chrome://network-errors` | [Stable] | Catalog of network error pages. |
+| `chrome://net-export` | **[Stable]** | Capture NetLog to file for offline analysis (replacement for `net-internals` live view). |
+| `chrome://privacy-sandbox-internals` | **[Stable]** | Diagnostics for Privacy Sandbox features (may show subpages like Private State Tokens, Topics, Related Website Sets, etc.). |
+| `chrome://optimization-guide-internals` | [Stable] | Optimization hints (Lite pages, performance hints). |
+| `chrome://gcm-internals` | **[Stable]** | Messaging diagnostics for extensions; **uses FCM** (Firebase Cloud Messaging) under `chrome.gcm`. |
+| `chrome://extensions` | [Stable] | Extension manager. |
+| `chrome://extensions-internals` | [Stable] | Extension service diagnostics. |
+| `chrome://serviceworker-internals` | [Stable] | Service worker registrations, states. |
+| `chrome://translate-internals` | [Stable] | (Listed above—kept here for completeness.) |
+| `chrome://web-app-internals` | [Stable] | Installed Web App (PWA) diagnostics. |
+| `chrome://app-service-internals` | **[Legacy]** | App service plumbing (relevant mostly on ChromeOS; Chrome Apps are being sunset—see deprecation note). |
+| `chrome://apps` | **[Legacy]** | Legacy Chrome Apps launcher page (Chrome Apps EOL in stages; mostly ChromeOS-only in the long term). |
+| `chrome://bookmarks` | [Stable] | Bookmarks UI. |
+| `chrome://help` | [Stable] | About Chrome (update channel, updates). |
+| `chrome://whats-new` | [Stable] | Recently shipped features tour. |
+| `chrome://dino` | [Stable] | T-Rex offline game. |
+
+### Hidden Debug Pages (Dangerous — can crash/kill/hang)
+
+> For debugging only; **do not** run on production sessions.
+
+| URL | Status | Action |
+|---|---|---|
+| `chrome://crash/` | [Stable] | Crash the renderer/tab. |
+| `chrome://kill/` | [Stable] | Kill the current tab. |
+| `chrome://hang/`, `chrome://shorthang/` | [Stable] | Induce hangs to test UI/UX. |
+| `chrome://gpuclean/`, `chrome://gpucrash/`, `chrome://gpuhang/` | [Stable] | GPU reset/crash/hang scenarios. |
+| `chrome://memory-exhaust/` | [Stable] | Attempt to exhaust memory. |
+| `chrome://memory-pressure-moderate/`, `chrome://memory-pressure-critical/` | [Stable] | Simulate memory pressure signals. |
+| `chrome://quit/`, `chrome://restart/` | [Stable] | Exit or restart the browser. |
+| `chrome://badcastcrash/`, `chrome://inducebrowsercrashforrealz/`, `chrome://inducebrowserdcheckforrealz/` | [Stable] | Force hard browser crashes / DCHECKs. |
+
+---
+
+## Deprecated / Removed (with Replacements)
+
+| URL | Status | Replacement / Note |
+|---|---|---|
+| `chrome://net-internals` | **[Deprecated]** | Use `chrome://net-export` (to record NetLogs) and **DevTools → Network** for live capture/inspection. Some workflows: start/stop a NetLog dump, then open with the NetLog viewer. |
+
+---
+
+## Privacy & Experiments
+
+| URL | Status | Description |
+|---|---|---|
+| `chrome://privacy-sandbox-internals` | **[Stable]** | Live status and diagnostics for Privacy Sandbox APIs (e.g., Topics, Protected/Private State Tokens, Attribution Reporting). |
+| `chrome://flags` | [Stable] | Switchboard for experiments (per-version). |
+| `chrome://topics-internals` | [Build/Flag-gated] | Topics API internals (appears only when enabled). |
+| `chrome://attribution-internals` | [Build/Flag-gated] | Attribution Reporting diagnostics. |
+| `chrome://private-aggregation-internals` | [Build/Flag-gated] | Private Aggregation diagnostics. |
+
+---
+
+## Notes for Edge & Brave
+
+- **Microsoft Edge**: `edge://edge-urls` lists internal pages. Many `edge://…` pages mirror Chrome’s (`flags`, `gpu`, `net-export`, etc.). Some legacy pages like `edge://net-internals` may still exist but are in the same deprecation path as Chrome’s.  
+- **Brave**: Use `brave://chrome-urls`. The list often displays `chrome://` links but they map to Brave’s internals.
+
+---
+
+## Chrome Apps Deprecation (Context for “Legacy” rows)
+
+Chrome Apps are being phased out: deprecation phases began in 2025 with **end-of-life in 2028** (on managed ChromeOS timelines). Keep `chrome://apps` / `chrome://app-service-internals` rows labeled **[Legacy]**; they’re largely irrelevant off-ChromeOS and will diminish over time.
+
+---
+
+## Handy Dev Workflows
+
+- **Network debugging (modern):**  
+  1) Live capture in **DevTools → Network**  
+  2) Long-running or background capture: **`chrome://net-export`** → save NetLog → open in NetLog Viewer.  
+- **Performance investigations:**  
+  - **`chrome://settings/performance`** to tune Memory Saver modes and set always-active site exceptions.  
+  - **`chrome://tracing`** (when available) for low-level traces; or use DevTools Performance panel.
