@@ -1,6 +1,11 @@
 # ⚙️🕵️‍♂️ Hidden/Secret Browser Menus & Settings (Updated Oct 2025)
 
-Secret/hidden internal pages exist across Chromium-based browsers and are accessed with `chrome://` (Chrome/Brave) or `edge://` (Microsoft Edge). These pages expose diagnostics, experiments, performance tools, and troubleshooting utilities that aren’t always visible in standard settings.
+[![GitHub stars](https://img.shields.io/github/stars/sparkyrider/chrome-secret-menus?style=social)](https://github.com/sparkyrider/chrome-secret-menus/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/sparkyrider/chrome-secret-menus?style=social)](https://github.com/sparkyrider/chrome-secret-menus/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/sparkyrider/chrome-secret-menus?style=social)](https://github.com/sparkyrider/chrome-secret-menus/watchers)
+[![License](https://img.shields.io/github/license/sparkyrider/chrome-secret-menus)](https://github.com/sparkyrider/chrome-secret-menus/blob/main/LICENSE)
+
+Secret/hidden internal pages exist across Chromium-based browsers and are accessed with `chrome://` (Chrome/Brave) or `edge://` (Microsoft Edge). These pages expose diagnostics, experiments, performance tools, and troubleshooting utilities that aren't always visible in standard settings.
 
 > **Authoritative Lists:**  
 > - Chrome/Brave: `chrome://chrome-urls` (alias: `chrome://about`)  
