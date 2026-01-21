@@ -1,4 +1,4 @@
-# ⚙️🕵️‍♂️ Hidden/Secret Browser Menus & Settings (Updated Oct 2025)
+# ⚙️🕵️‍♂️ Hidden/Secret Browser Menus & Settings (Updated Jan 2026)
 
 [![GitHub stars](https://img.shields.io/github/stars/sparkyrider/chrome-secret-menus?style=social)](https://github.com/sparkyrider/chrome-secret-menus/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/sparkyrider/chrome-secret-menus?style=social)](https://github.com/sparkyrider/chrome-secret-menus/network/members)
@@ -27,10 +27,15 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 
 ## Quick Updates Since 2023
 
-- **New:** `chrome://settings/performance` (Memory Saver modes, performance alerts).  
-- **New-ish:** `chrome://privacy-sandbox-internals` (diagnostics for Privacy Sandbox features).  
-- **Clarified:** `chrome://site-engagement` description (engagement scores influence certain heuristics like autoplay).  
-- **GCM → FCM:** `chrome://gcm-internals` now references Firebase Cloud Messaging.  
+- **New:** `chrome://settings/performance` (Memory Saver modes, performance alerts).
+- **New-ish:** `chrome://privacy-sandbox-internals` (diagnostics for Privacy Sandbox features).
+- **Added:** `chrome://discards` (tab discard state and memory management).
+- **Added:** `chrome://accessibility` (accessibility feature diagnostics and tree inspection).
+- **Added:** `chrome://inspect` (inspect pages, extensions, workers, and remote devices).
+- **Added:** `chrome://autofill-internals`, `chrome://memory-internals`, `chrome://conflicts`, `chrome://user-actions`.
+- **Added:** `chrome://credits`, `chrome://terms`, `chrome://print`, `chrome://feedback` (commonly used pages).
+- **Clarified:** `chrome://site-engagement` description (engagement scores influence certain heuristics like autoplay).
+- **GCM → FCM:** `chrome://gcm-internals` now references Firebase Cloud Messaging.
 - **Deprecated:** `chrome://net-internals` (use `chrome://net-export` + DevTools Network).
 
 ---
@@ -55,8 +60,11 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 | `chrome://media-internals` | [Stable] | Media pipeline details, playback events/errors. |
 | `chrome://media-engagement` | [Stable] | Media engagement scores per origin. |
 | `chrome://site-engagement` | **[Stable]** | Overall site engagement scores (0–100) per origin; used by some heuristics (e.g., autoplay). |
+| `chrome://discards` | **[Stable]** | Tab discard state and memory management; shows tabs in order of priority for discarding to save resources. |
+| `chrome://memory-internals` | [Stable] | Memory usage diagnostics and internals. |
 | `chrome://password-manager` | [Stable] | Password Manager UI. |
 | `chrome://password-manager-internals` | [Stable] | Diagnostics for credential storage/filling. |
+| `chrome://autofill-internals` | [Stable] | Autofill diagnostics and form filling behavior. |
 | `chrome://sync-internals` | [Stable] | Sync transport status, types, errors. |
 | `chrome://signin-internals` | [Stable] | Account and token diagnostics. |
 | `chrome://policy` | [Stable] | Active enterprise/user policies. |
@@ -65,6 +73,8 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 | `chrome://translate-internals` | [Stable] | Translate language packs, events, decisions. |
 | `chrome://bluetooth-internals` | [Stable] | BLE device scanning, GATT info. |
 | `chrome://usb-internals` | [Stable] | USB discovery, permissions, test transfers. |
+| `chrome://accessibility` | [Stable] | Accessibility feature state per tab, tree inspection, mode toggles. |
+| `chrome://inspect` | [Stable] | Inspect pages, extensions, apps, workers; remote device debugging. |
 | `chrome://indexeddb-internals` | [Stable] | Origin DB enumeration and details. |
 | `chrome://quota-internals` | [Stable] | Storage quotas and usage by origin. |
 | `chrome://ntp-tiles-internals` | [Stable] | New Tab Page tile diagnostics. |
@@ -77,6 +87,8 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 | `chrome://downloads` | [Stable] | Downloads UI. |
 | `chrome://download-internals` | [Stable] | Download service tasks, states, history. |
 | `chrome://device-log` | [Stable] | Device (USB/Bluetooth/etc.) event logs. |
+| `chrome://conflicts` | [Stable] | Loaded modules and conflict detection (Windows). |
+| `chrome://user-actions` | [Stable] | Real-time log of user actions (clicks, navigations, etc.). |
 | `chrome://process-internals` | [Stable] | Process model debugging overview. |
 | `chrome://profile-internals` | [Stable] | Active profile diagnostics. |
 | `chrome://interstitials` | [Stable] | Lists warning interstitials (SSL, lookalike, etc.). |
@@ -93,7 +105,11 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 | `chrome://app-service-internals` | **[Legacy]** | App service plumbing (relevant mostly on ChromeOS; Chrome Apps are being sunset—see deprecation note). |
 | `chrome://apps` | **[Legacy]** | Legacy Chrome Apps launcher page (Chrome Apps EOL in stages; mostly ChromeOS-only in the long term). |
 | `chrome://bookmarks` | [Stable] | Bookmarks UI. |
+| `chrome://print` | [Stable] | Print preview and settings. |
+| `chrome://feedback` | [Stable] | Send feedback to Chrome team. |
 | `chrome://help` | [Stable] | About Chrome (update channel, updates). |
+| `chrome://credits` | [Stable] | Open source software credits and licenses. |
+| `chrome://terms` | [Stable] | Chrome Terms of Service. |
 | `chrome://whats-new` | [Stable] | Recently shipped features tour. |
 | `chrome://dino` | [Stable] | T-Rex offline game. |
 
