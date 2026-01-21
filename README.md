@@ -1,4 +1,4 @@
-# ⚙️🕵️‍♂️ Hidden/Secret Browser Menus & Settings (Updated Oct 2025)
+# ⚙️🕵️‍♂️ Hidden/Secret Browser Menus & Settings (Updated Jan 2026)
 
 [![GitHub stars](https://img.shields.io/github/stars/sparkyrider/chrome-secret-menus?style=social)](https://github.com/sparkyrider/chrome-secret-menus/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/sparkyrider/chrome-secret-menus?style=social)](https://github.com/sparkyrider/chrome-secret-menus/network/members)
@@ -27,10 +27,20 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 
 ## Quick Updates Since 2023
 
-- **New:** `chrome://settings/performance` (Memory Saver modes, performance alerts).  
-- **New-ish:** `chrome://privacy-sandbox-internals` (diagnostics for Privacy Sandbox features).  
-- **Clarified:** `chrome://site-engagement` description (engagement scores influence certain heuristics like autoplay).  
-- **GCM → FCM:** `chrome://gcm-internals` now references Firebase Cloud Messaging.  
+- **New:** `chrome://settings/performance` (Memory Saver modes, performance alerts).
+- **New-ish:** `chrome://privacy-sandbox-internals` (diagnostics for Privacy Sandbox features).
+- **Added Jan 2026:** Comprehensive expansion with 25+ new pages including:
+  - Memory & storage: `chrome://discards`, `chrome://memory-internals`, `chrome://blob-internals`, `chrome://local-state`
+  - Accessibility: `chrome://accessibility`, `chrome://inspect`
+  - AI/ML: `chrome://on-device-internals`, `chrome://on-device-translation-internals`, `chrome://commerce-internals`
+  - Diagnostics: `chrome://autofill-internals`, `chrome://conflicts`, `chrome://user-actions`, `chrome://suggest-internals`
+  - User-facing: `chrome://credits`, `chrome://terms`, `chrome://print`, `chrome://feedback`, `chrome://newtab`, `chrome://view-cert`
+  - Enterprise: `chrome://connectors-internals`, `chrome://segmentation-internals`
+  - Media: `chrome://media-router-internals`
+  - Tracing: `chrome://traces-internals`
+  - Other: `chrome://internals`, `chrome://updater`, `chrome://webui-gallery`, `chrome://history-clusters-internals`
+- **Clarified:** `chrome://site-engagement` description (engagement scores influence certain heuristics like autoplay).
+- **GCM → FCM:** `chrome://gcm-internals` now references Firebase Cloud Messaging.
 - **Deprecated:** `chrome://net-internals` (use `chrome://net-export` + DevTools Network).
 
 ---
@@ -40,6 +50,7 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 | URL | Status | Description |
 |---|---|---|
 | `chrome://chrome-urls` | [Stable] | Master list of internal pages (alias: `chrome://about`). |
+| `chrome://internals` | [Stable] | Hub page for various internal diagnostic pages. |
 | `chrome://version` | [Stable] | Full build/channel/OS, JavaScript & user agent info, command-line switches. |
 | `chrome://settings` | [Stable] | Main settings hub. |
 | `chrome://settings/performance` | **[Stable]** | Performance settings: Memory Saver (modes), performance issue alerts, keep-active site list. |
@@ -50,33 +61,48 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 | `chrome://histograms` | [Stable] | Internal metrics histograms. |
 | `chrome://system` | [Stable] | OS/Chrome system info snapshot. |
 | `chrome://tracing` | [Build/Flag-gated] | Low-level performance tracing (record/view traces). |
+| `chrome://traces-internals` | [Build/Flag-gated] | Tracing configuration and management. |
 | `chrome://webrtc-internals` | [Stable] | WebRTC session stats, getUserMedia info, event logs. |
 | `chrome://webrtc-logs` | [Stable] | Access collected WebRTC logs. |
 | `chrome://media-internals` | [Stable] | Media pipeline details, playback events/errors. |
 | `chrome://media-engagement` | [Stable] | Media engagement scores per origin. |
+| `chrome://media-router-internals` | [Stable] | Cast and media routing diagnostics. |
 | `chrome://site-engagement` | **[Stable]** | Overall site engagement scores (0–100) per origin; used by some heuristics (e.g., autoplay). |
+| `chrome://discards` | **[Stable]** | Tab discard state and memory management; shows tabs in order of priority for discarding to save resources. |
+| `chrome://memory-internals` | [Stable] | Memory usage diagnostics and internals. |
 | `chrome://password-manager` | [Stable] | Password Manager UI. |
 | `chrome://password-manager-internals` | [Stable] | Diagnostics for credential storage/filling. |
+| `chrome://autofill-internals` | [Stable] | Autofill diagnostics and form filling behavior. |
 | `chrome://sync-internals` | [Stable] | Sync transport status, types, errors. |
 | `chrome://signin-internals` | [Stable] | Account and token diagnostics. |
 | `chrome://policy` | [Stable] | Active enterprise/user policies. |
 | `chrome://management` | [Stable] | Shows if the browser is managed and by whom. |
+| `chrome://connectors-internals` | [Stable] | Enterprise connectors diagnostics. |
 | `chrome://safe-browsing` | [Stable] | Safe Browsing state and diagnostics. |
 | `chrome://translate-internals` | [Stable] | Translate language packs, events, decisions. |
+| `chrome://on-device-translation-internals` | [Build/Flag-gated] | On-device translation AI diagnostics. |
 | `chrome://bluetooth-internals` | [Stable] | BLE device scanning, GATT info. |
 | `chrome://usb-internals` | [Stable] | USB discovery, permissions, test transfers. |
+| `chrome://accessibility` | [Stable] | Accessibility feature state per tab, tree inspection, mode toggles. |
+| `chrome://inspect` | [Stable] | Inspect pages, extensions, apps, workers; remote device debugging. |
 | `chrome://indexeddb-internals` | [Stable] | Origin DB enumeration and details. |
+| `chrome://blob-internals` | [Stable] | Blob storage diagnostics and management. |
 | `chrome://quota-internals` | [Stable] | Storage quotas and usage by origin. |
+| `chrome://local-state` | [Stable] | Local state file viewer (browser-wide prefs). |
 | `chrome://ntp-tiles-internals` | [Stable] | New Tab Page tile diagnostics. |
 | `chrome://omnibox` | [Stable] | Autocomplete prediction/debug UI. |
+| `chrome://suggest-internals` | [Stable] | Omnibox suggestions diagnostics and configuration. |
 | `chrome://predictors` | [Stable] | Resource prediction, preconnect hints. |
 | `chrome://prefs-internals` | [Stable] | Pref store debug view (policy/sync/local). |
 | `chrome://metrics-internals` | [Stable] | UMA/UKM metrics info and logs. |
 | `chrome://ukm` | [Stable] | Usage Keyed Metrics details. |
 | `chrome://history` | [Stable] | History UI. |
+| `chrome://history-clusters-internals` | [Build/Flag-gated] | History clustering/journeys diagnostics. |
 | `chrome://downloads` | [Stable] | Downloads UI. |
 | `chrome://download-internals` | [Stable] | Download service tasks, states, history. |
 | `chrome://device-log` | [Stable] | Device (USB/Bluetooth/etc.) event logs. |
+| `chrome://conflicts` | [Stable] | Loaded modules and conflict detection (Windows). |
+| `chrome://user-actions` | [Stable] | Real-time log of user actions (clicks, navigations, etc.). |
 | `chrome://process-internals` | [Stable] | Process model debugging overview. |
 | `chrome://profile-internals` | [Stable] | Active profile diagnostics. |
 | `chrome://interstitials` | [Stable] | Lists warning interstitials (SSL, lookalike, etc.). |
@@ -84,6 +110,9 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 | `chrome://net-export` | **[Stable]** | Capture NetLog to file for offline analysis (replacement for `net-internals` live view). |
 | `chrome://privacy-sandbox-internals` | **[Stable]** | Diagnostics for Privacy Sandbox features (may show subpages like Private State Tokens, Topics, Related Website Sets, etc.). |
 | `chrome://optimization-guide-internals` | [Stable] | Optimization hints (Lite pages, performance hints). |
+| `chrome://on-device-internals` | [Build/Flag-gated] | On-device AI/ML model diagnostics. |
+| `chrome://segmentation-internals` | [Stable] | User segmentation and targeting diagnostics. |
+| `chrome://commerce-internals` | [Build/Flag-gated] | Shopping features and price tracking internals. |
 | `chrome://gcm-internals` | **[Stable]** | Messaging diagnostics for extensions; **uses FCM** (Firebase Cloud Messaging) under `chrome.gcm`. |
 | `chrome://extensions` | [Stable] | Extension manager. |
 | `chrome://extensions-internals` | [Stable] | Extension service diagnostics. |
@@ -93,23 +122,33 @@ Secret/hidden internal pages exist across Chromium-based browsers and are access
 | `chrome://app-service-internals` | **[Legacy]** | App service plumbing (relevant mostly on ChromeOS; Chrome Apps are being sunset—see deprecation note). |
 | `chrome://apps` | **[Legacy]** | Legacy Chrome Apps launcher page (Chrome Apps EOL in stages; mostly ChromeOS-only in the long term). |
 | `chrome://bookmarks` | [Stable] | Bookmarks UI. |
+| `chrome://newtab` | [Stable] | New Tab Page (alias: `chrome://new-tab-page`). |
+| `chrome://print` | [Stable] | Print preview and settings. |
+| `chrome://view-cert` | [Stable] | Certificate viewer (opened from certificate dialogs). |
+| `chrome://feedback` | [Stable] | Send feedback to Chrome team. |
 | `chrome://help` | [Stable] | About Chrome (update channel, updates). |
+| `chrome://updater` | [Stable] | Chrome updater internals and status. |
+| `chrome://credits` | [Stable] | Open source software credits and licenses. |
+| `chrome://webui-gallery` | [Build/Flag-gated] | WebUI component gallery (Chrome UI components showcase). |
+| `chrome://terms` | [Stable] | Chrome Terms of Service. |
 | `chrome://whats-new` | [Stable] | Recently shipped features tour. |
 | `chrome://dino` | [Stable] | T-Rex offline game. |
 
 ### Hidden Debug Pages (Dangerous — can crash/kill/hang)
 
-> For debugging only; **do not** run on production sessions.
+> ⚠️ **WARNING:** For debugging only; **do not** run on production sessions. These URLs will crash/hang/kill tabs or the entire browser.
 
 | URL | Status | Action |
 |---|---|---|
 | `chrome://crash/` | [Stable] | Crash the renderer/tab. |
+| `chrome://crash/rust` | [Stable] | Crash the renderer via Rust component. |
+| `chrome://crashdump/` | [Stable] | Generate crash dump. |
 | `chrome://kill/` | [Stable] | Kill the current tab. |
 | `chrome://hang/`, `chrome://shorthang/` | [Stable] | Induce hangs to test UI/UX. |
 | `chrome://gpuclean/`, `chrome://gpucrash/`, `chrome://gpuhang/` | [Stable] | GPU reset/crash/hang scenarios. |
 | `chrome://memory-exhaust/` | [Stable] | Attempt to exhaust memory. |
 | `chrome://memory-pressure-moderate/`, `chrome://memory-pressure-critical/` | [Stable] | Simulate memory pressure signals. |
-| `chrome://quit/`, `chrome://restart/` | [Stable] | Exit or restart the browser. |
+| `chrome://quit/`, `chrome://restart/` | [Stable] | **Exit or restart the entire browser immediately** (closes all tabs without warning). |
 | `chrome://badcastcrash/`, `chrome://inducebrowsercrashforrealz/`, `chrome://inducebrowserdcheckforrealz/` | [Stable] | Force hard browser crashes / DCHECKs. |
 
 ---
