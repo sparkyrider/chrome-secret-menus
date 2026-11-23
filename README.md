@@ -4,59 +4,50 @@
 [![GitHub forks](https://img.shields.io/github/forks/sparkyrider/chrome-secret-menus?style=social)](https://github.com/sparkyrider/chrome-secret-menus/network/members)
 [![License](https://img.shields.io/github/license/sparkyrider/chrome-secret-menus)](LICENSE)
 
-An evidence-backed guide to Chrome's `chrome://` diagnostic pages, internal
-WebUIs, settings routes, and destructive debug commands.
+Paste `chrome://chrome-urls` into Google Chrome's address bar to see its hidden
+menus. `chrome://about` opens the same list. This guide explains which pages
+help you check settings, troubleshoot a problem, or inspect how Chrome works.
 
-> **Verified July 30, 2026.** The current desktop Stable line is Chrome
-> **151.0.7922.71/.72**, as published in the
-> [Stable desktop release announcement](https://chromereleases.googleblog.com/2026/07/stable-channel-update-for-desktop_0887107924.html).
-> This guide was checked in a clean macOS arm64
-> **Chrome for Testing 151.0.7922.71** profile, against the matching Chromium
-> 151 source, and against Chromium main at commit
-> [`96dfd842`](https://chromium.googlesource.com/chromium/src/+/96dfd842b1413173623925072864a326d629577d)
-> (Chrome 153 development).
+> **Verified November 23, 2026 · Chrome 158 Stable.** Google announced
+> **158.0.8127.36/.37** for Windows and macOS and **158.0.8127.36** for Linux.
+> The rollout is staged. Check your installed build at `chrome://version`.
+> [Google's desktop release announcement](https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-desktop_01699533288.html).
 
-The captured Chrome 151 inventory contains **130 registered WebUI entries**
-(113 enabled and 17 disabled in that capture), **40 internal-debugging
-entries** (37 configuration-enabled and 3 feature-disabled, all behind the
-master toggle), and **31 destructive or process-control commands**. See the
-[complete machine-readable snapshot](data/chrome-151.0.7922.71-macos-arm64.json);
-the tables below intentionally emphasize pages that are useful when opened
-directly.
+In a fresh **Chrome for Testing 158.0.8127.36** profile on macOS arm64, Chrome
+listed **127 Chrome URLs** (115 enabled, 12 disabled), **41 internal debugging
+entries** (39 configuration-enabled, 2 disabled), and **34 debug commands**.
+The [complete November snapshot](data/chrome-158.0.8127.36-macos-arm64.json)
+preserves all three lists. For the changes since July, see
+[renamed and retired pages](#removed-renamed-and-easily-misunderstood-pages).
 
 ## Start with Chrome's own list
 
-Paste `chrome://chrome-urls` into the address bar. `chrome://about` is an
-alias. This runtime list is the authority for the browser, OS, profile,
-policies, feature configuration, and variations seed you are actually using.
+Your browser builds its own list from the platform, profile, policies, and
+features it has enabled. Chrome 158 groups entries under three headings.
 
-Current Chrome divides the page into three groups:
-
-1. **Chrome URLs** — registered WebUIs. Some are ordinary pages; others are
-   embedded dialogs, side panels, setup flows, or disabled feature surfaces.
-2. **Internal Debugging URLs** — developer diagnostics disabled behind a
-   master toggle. Chrome warns that enabling these pages can expose sensitive
-   state and that the pages may break or disappear.
-3. **Commands for Debug** — URLs that deliberately crash, hang, kill, restart,
-   or stress browser processes.
-
-Registration is not a promise that direct navigation will work. A page may
-require a particular OS, build flag, feature, profile state, account, policy,
-region, or parent UI.
+1. **List of Chrome URLs** includes ordinary settings and diagnostic pages,
+   embedded dialogs, side panels, and registered features. Disabled entries
+   appear as plain text.
+2. **Internal Debugging Page URLs** has an **Enable internal debugging pages**
+   button. In a disposable profile, use it to inspect a diagnostic page, then
+   disable it when finished. A page with its own unmet feature or profile
+   requirement stays unavailable.
+3. **Command URLs for Debug** lists commands that can crash, hang, quit, or
+   restart Chrome. Chrome shows these as plain text.
 
 ### Status terms
 
 | Status | Meaning |
 | --- | --- |
-| **Available** | Observed enabled in the clean Chrome 151 macOS capture. |
-| **Internal toggle** | Listed under Internal Debugging URLs and unavailable until that master toggle is enabled. |
+| **Available** | Enabled in the Chrome 158 macOS capture, or directly verified for a subpage. |
+| **Internal toggle** | Requires the master toggle under Internal Debugging Page URLs. |
 | **Feature/profile** | Registered, but usefulness or availability depends on a feature, account, region, policy, or profile state. |
 | **Platform/build** | Compiled or registered only on certain operating systems or build configurations. |
 | **Flow/embedded** | Intended for a Chrome-owned dialog, side panel, setup flow, or embedded frame rather than direct use. |
 | **Partially legacy** | The page remains useful, but a major older function has been removed. |
 | **Legacy alias** | Still resolves, but another host is canonical. |
 | **Removed** | No longer registered in the stated Chrome release. |
-| **Upstream only** | Present in current Chromium source but not in Chrome 151 Stable. |
+| **Upstream only** | Found in the pinned Chromium development source and absent from the Chrome 158 release source. |
 
 > [!CAUTION]
 > Internal pages can reveal visited origins, account identifiers, device
@@ -74,7 +65,9 @@ troubleshooting.
 | `chrome://chrome-urls` | Available | The installation's dynamically generated master list. |
 | `chrome://version` | Available | Version, revision, OS, user agent, executable/profile paths, and command line. |
 | `chrome://settings` | Available | Main settings UI. |
+| `chrome://settings/help` | Available | About Chrome. Shows the installed version and, in regular Google Chrome, checks for updates. |
 | `chrome://settings/performance` | Available | Memory Saver, Energy Saver, performance alerts, and site exceptions, subject to device support and policy. |
+| `chrome://settings/content` | Available | View and change site permissions. Use `chrome://settings/content/all` to look up one site's permissions and stored data. |
 | `chrome://flags` | Available | Temporary experiments. Flags change or disappear without notice and are not production configuration. |
 | `chrome://components` | Available | Installed component versions and update controls. |
 | `chrome://policy` | Available | Loaded enterprise policies, their sources, scope, and status. |
@@ -104,14 +97,16 @@ troubleshooting.
 
 | URL | Status | What it is for |
 | --- | --- | --- |
-| `chrome://app-service-internals` | Available | App Service registry and publisher/subscriber state; relevance varies by OS and installed apps. |
+| `chrome://accessibility` | Available | Inspect accessibility trees, active assistive technology, and Chrome's accessibility mode. |
+| `chrome://app-service-internals` | Available | Inspect App Service registrations and publishers. The results depend on the OS and installed apps. |
+| `chrome://connectors-internals` | Available | Inspect enterprise connector status, including Device Trust and managed client certificates. |
 | `chrome://credits` | Available | Open-source notices and licenses. |
 | `chrome://device-log` | Available | Events from Bluetooth, USB, networking, and other device subsystems. |
 | `chrome://histograms` | Available | In-memory UMA histogram samples. |
 | `chrome://metrics-internals` | Available | Metrics-service state and logs. |
 | `chrome://prefs-internals` | Available | Effective preference values and stores. Treat the output as sensitive. |
 | `chrome://process-internals` | Available | Site-isolation and process-model diagnostics. |
-| `chrome://profile-internals` | Available / Internal toggle | Profile attributes and state. Chrome 151 reports this host in both runtime groups. |
+| `chrome://profile-internals` | Internal toggle | Profile attributes and state. It appears in both URL lists, but opening it with debugging turned off displays Chrome's disabled-pages notice. |
 | `chrome://signin-internals` | Available | Sign-in, account, token, and identity diagnostics. |
 | `chrome://updater` | Available | Chrome updater state on supported desktop installations. |
 | `chrome://user-actions` | Internal toggle | Live user-action metric names. |
@@ -124,11 +119,10 @@ troubleshooting.
 | `chrome://blob-internals` | Available | Active blob objects and backing storage. |
 | `chrome://discards` | Internal toggle | Tab lifecycle/discardability state and manual discard controls. |
 | `chrome://indexeddb-internals` | Available | IndexedDB origins, paths, and metadata. |
-| `chrome://memory-internals` | Internal toggle | Browser memory diagnostics and instrumentation. |
 | `chrome://quota-internals` | Available | Storage quota usage and buckets by origin. |
 | `chrome://tracing` | Internal toggle | Low-level tracing UI; separate from the newer Local Traces page. |
 | `chrome://traces-internals` | Legacy alias | Temporary compatibility alias for `chrome://traces`. |
-| `chrome://webnn-internals` | Available | WebNN graph creation and transformation records, with JSON export. |
+| `chrome://webnn-internals` | Available | Inspect active WebNN contexts and recorded machine-learning graphs. |
 
 ### Network, media, and hardware
 
@@ -152,6 +146,8 @@ troubleshooting.
 | `chrome://bookmarks` | Available | Bookmark Manager. |
 | `chrome://downloads` | Available | Downloads UI. |
 | `chrome://history` | Available | Browsing History UI. |
+| `chrome://iwa-dev` | Available / Feature/profile | Isolated Web App Developer Tool. The page opens in a regular profile. Installing or updating development apps requires IWA developer mode. [Chromium's IWA tool documentation](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/chrome/browser/ui/webui/iwa_dev/README.md). |
+| `chrome://ntp-tiles-internals` | Available | See which sites supply the shortcut tiles on the New Tab Page and where Chrome got them. |
 | `chrome://password-manager-internals` | Available | Password-manager event diagnostics. Output can be sensitive. |
 | `chrome://print` | Platform/build | Print Preview in builds that include it; normally opened as part of a print flow. |
 | `chrome://view-cert` | Platform/build / Flow/embedded | Certificate viewer host used from certificate-related UI; direct navigation may be empty or unsupported. |
@@ -169,49 +165,49 @@ eligible.
 | `chrome://suggest-internals` | Available | Suggest service configuration, requests, and responses. |
 | `chrome://actor-internals` | Internal toggle | Actor/task execution events and trace export for experimental agentic features. |
 | `chrome://autofill-ml-internals` | Internal toggle | Autofill machine-learning model diagnostics. |
-| `chrome://content-annotator-internals` | Internal toggle | Content-annotation model status and results. |
 | `chrome://context-hub` | Internal toggle | Experimental Context Hub diagnostics. |
 | `chrome://contextual-cueing-internals` | Internal toggle | Generated contextual cues, decisions, and debug feedback. |
 | `chrome://on-device-internals` | Internal toggle | Built-in AI model-service status, model state, and diagnostic tools. |
 | `chrome://optimization-guide-internals` | Internal toggle | Optimization Guide hints, models, downloads, and decisions. |
-| `chrome://personal-context-internals` | Internal toggle | Personal-context service state for gated AI features. |
+| `chrome://notebooks-internals` | Internal toggle | Shows Notebooks eligibility and feature configuration for the current profile. |
 | `chrome://private-ai-internals` | Internal toggle | Private AI service diagnostics; this replaced the former `chrome://legion-internals` name. |
-| `chrome://indigo-internals` | Internal toggle + Feature/profile | Indigo eligibility/service diagnostics; requires its feature in addition to the debug-page toggle. |
+| `chrome://indigo-internals` | Internal toggle | Shows Indigo service status, Gemini in Chrome integration, and loaded prompts. Its configuration was enabled in the test profile. |
 
 ## Complete Internal Debugging URL set
 
-In the Chrome 151 capture, the master toggle is off by default. An entry marked
-“+ feature” was registered but its own feature check was false in the clean
-profile.
+The Chrome 158 macOS capture started with the master toggle off. Turning it on
+made 39 of these 41 entries clickable. The two marked “+ feature” still had
+an unmet feature check.
 
 | URL | Gate | Purpose |
 | --- | --- | --- |
 | `chrome://actor-internals` | Internal toggle | Actor/task event diagnostics and trace export. |
 | `chrome://autofill-ml-internals` | Internal toggle | Autofill ML diagnostics. |
-| `chrome://chrome-finds-internals` | Internal toggle + feature | Chrome Finds diagnostics. |
+| `chrome://browser-actuator-internals` | Internal toggle + feature | Browser Actuator diagnostics. Both the actuator and its internal UI have separate feature checks. |
 | `chrome://color-pipeline-internals` | Internal toggle | Color-pipeline configuration and experiments. |
 | `chrome://commerce-internals` | Internal toggle | Shopping and commerce service state. |
-| `chrome://content-annotator-internals` | Internal toggle | Content annotation and classification state. |
+| `chrome://content-settings` | Internal toggle | Inspect Chrome's content-setting rules, patterns, and sources. Use `chrome://settings/content` to change site permissions. |
 | `chrome://context-hub` | Internal toggle | Experimental Context Hub diagnostics. |
 | `chrome://contextual-cueing-internals` | Internal toggle | Contextual cue generation and feedback. |
+| `chrome://critical-actions-internals` | Internal toggle | Inspect recorded critical actions. The page opens even when action logging is inactive. [Chromium's page documentation](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/chrome/browser/ui/webui/critical_actions/README.md). |
 | `chrome://data-sharing-internals` | Internal toggle | Data-sharing and shared-tab-group service state. |
 | `chrome://discards` | Internal toggle | Tab lifecycle and discard controls. |
 | `chrome://download-internals` | Internal toggle | Download service tasks and state. |
 | `chrome://family-link-user-internals` | Internal toggle | Supervised-user and Family Link state. |
 | `chrome://history-clusters-internals` | Internal toggle | History clustering/Journeys diagnostics. |
-| `chrome://indigo-internals` | Internal toggle + feature | Indigo eligibility and service diagnostics. |
+| `chrome://indigo-internals` | Internal toggle | Indigo service status and integration diagnostics. |
 | `chrome://infobar-internals` | Internal toggle | Infobar creation and state diagnostics. |
 | `chrome://interstitials` | Internal toggle | Test and preview security/warning interstitials. |
 | `chrome://local-state` | Internal toggle | Browser-wide Local State preference viewer. |
 | `chrome://location-internals` | Internal toggle | Location service state. |
 | `chrome://media-router-internals` | Internal toggle | Cast/media-router diagnostics. |
-| `chrome://memory-internals` | Internal toggle | Memory instrumentation. |
 | `chrome://multistep-filter-internals` | Internal toggle + feature | Multi-step filtering diagnostics. |
 | `chrome://network-errors` | Internal toggle | Catalog and preview of network error pages. |
-| `chrome://omnibox` | Internal toggle | Omnibox autocomplete input, providers, and scoring. |
+| `chrome://notebooks-internals` | Internal toggle | Notebooks eligibility and configuration. |
+| `chrome://omnibox-internals` | Internal toggle | Inspect address-bar autocomplete providers, suggestions, and scores. The old `chrome://omnibox` address redirects here. |
 | `chrome://on-device-internals` | Internal toggle | On-device AI model-service diagnostics. |
 | `chrome://optimization-guide-internals` | Internal toggle | Hints, model downloads, and optimization decisions. |
-| `chrome://personal-context-internals` | Internal toggle | Personal-context service state. |
+| `chrome://page-action-internals` | Internal toggle | Preview address-bar action icons, chips, and their anchored messages. |
 | `chrome://private-ai-internals` | Internal toggle | Private AI service diagnostics. |
 | `chrome://profile-internals` | Internal toggle | Profile attributes and state. |
 | `chrome://regional-capabilities-internals` | Internal toggle | Region-dependent capability state. |
@@ -235,6 +231,7 @@ profile.
 | `chrome://help` | Settings route | Opens About Chrome/update UI through Settings. |
 | `chrome://internals/session-service` | Available | The implemented Session Service diagnostic page. The bare `chrome://internals` host is registered but is not a general-purpose hub. |
 | `chrome://newtab` | Special route | The New Tab Page is selected by Chrome configuration; the runtime registration can appear disabled even though opening a new tab works. |
+| `chrome://organizer-panel.top-chrome` | Flow/embedded | Chrome's organizer panel. The host appears in the Stable list as a browser-owned panel. |
 | `chrome://traces-internals` | Legacy alias | Compatibility alias for `chrome://traces`. |
 | `*.top-chrome` hosts | Flow/embedded | Side panels, toolbar surfaces, bubbles, and other browser-owned UI. |
 | `chrome-untrusted://...` hosts | Flow/embedded | Isolated subframes used by trusted Chrome UI. They are captured in the snapshot but generally are not standalone menus. |
@@ -246,15 +243,16 @@ produces an empty or incomplete surface.
 
 ## Platform and build differences
 
-The included snapshot is macOS arm64. Chromium source confirms additional
-desktop registrations under platform/build guards:
+Both dated snapshots cover macOS arm64. The Chrome 158 source also identifies
+pages compiled for other operating systems and builds.
 
 | URL | Where/when |
 | --- | --- |
 | `chrome://conflicts` | Windows module/conflict diagnostics. |
 | `chrome://sandbox` | Windows, Linux, ChromeOS, and Android; not macOS. |
 | `chrome://linux-proxy-config` | Linux, ChromeOS, and OpenBSD. |
-| `chrome://unexportable-keys-internals` | macOS in Chrome 151. |
+| `chrome://unexportable-keys-internals` | macOS in Chrome 158. |
+| `chrome://chrome-finds-internals` | Chrome 158 registers this diagnostic under its Android build guard. It was also listed in the July desktop capture. [Registration in Chrome 158](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/chrome/browser/ui/webui/chrome_web_ui_configs.cc#353). |
 | `chrome://webxr-internals` | Builds with WebXR/VR support. |
 | `chrome://print`, extension pages, certificate UI | Depend on their corresponding build features. |
 
@@ -264,23 +262,31 @@ desktop inventory.
 
 ## Removed, renamed, and easily misunderstood pages
 
-| URL or area | Chrome 151 status | Current guidance |
+The July guide listed `chrome://iwa-dev`, `chrome://notebooks-internals`, and
+`chrome://organizer-panel.top-chrome` as development-only. All three appear in
+Chrome 158 Stable. The table tracks older addresses that changed or often cause
+confusion. [July Chrome 151 snapshot](data/chrome-151.0.7922.71-macos-arm64.json).
+
+| URL or area | Chrome 158 status | Current guidance |
 | --- | --- | --- |
-| `chrome://privacy-sandbox-internals` | **Removed** | The page and its subpages were removed before Chrome 151 ([post-removal cleanup confirmation](https://chromium.googlesource.com/chromium/src/testing/+/25a9c6b7f82c06fb46abc59eaf2fa684b2cb556d)). Do not list it as a current menu. |
-| `chrome://net-internals/#events` | **Removed functionality** | The old Events viewer is gone. Other `net-internals` tabs remain; capture logs with `chrome://net-export`. |
+| `chrome://omnibox` | **Legacy alias** | Redirects to `chrome://omnibox-internals`, which requires the internal debugging toggle. Paths, queries, and fragments survive the redirect. [Chromium rename](https://chromium.googlesource.com/chromium/src/+/dc45e295ff43587775c85e7183c509f47e662bfc). |
+| `chrome://memory-internals` | **Removed** | Chromium retired its old heap-profiling UI. For trace recording, use `chrome://traces`. [Heap-profiler removal](https://chromium.googlesource.com/chromium/src/+/a96d6bdf29f85803872faee47f723d7ff48bda58). |
+| `chrome://content-annotator-internals` | **Removed** | The content-annotation diagnostic page and its logging backend were deleted. [Chromium removal](https://chromium.googlesource.com/chromium/src/+/b097414df3afcaab1a7a24a3c3768a568b050f34). |
+| `chrome://personal-context-internals` | **Removed** | Chromium deleted this unused personal-context diagnostic page. [Chromium removal](https://chromium.googlesource.com/chromium/src/+/6e9684ef2b63a6073ba4a94b0d741e617f5fc006). |
+| `chrome://personal-context-notice`, `chrome://signin-qrcode-bar` | **Removed** | These embedded desktop surfaces were retired. See the [personal-context notice cleanup](https://chromium.googlesource.com/chromium/src/+/c7d83e95379913d05e8ca54c899bf728ae193144) and [sign-in QR banner removal](https://chromium.googlesource.com/chromium/src/+/9430be7e664e9b20e752cd331fa7bf49d166c914). |
+| `chrome://privacy-sandbox-internals` | **Removed** | The page and its subpages were retired before the July capture. [WebUI removal](https://chromium.googlesource.com/chromium/src/+/cd4f2ebcd9198ca2dbbd799906b4706b23a46424). |
+| `chrome://topics-internals`, `chrome://attribution-internals`, `chrome://private-aggregation-internals` | **Removed** | July's snapshot still listed these Privacy Sandbox diagnostics. Chromium removed the [Topics](https://chromium.googlesource.com/chromium/src/+/a99ca4de8389ef68b9c8acd247517c4fa659738a), [Attribution Reporting](https://chromium.googlesource.com/chromium/src/+/de212a08955ad79b0d64edfb9cb2edf6ad5428d0), and [Private Aggregation](https://chromium.googlesource.com/chromium/src/+/063a5015ed40740a35d8bc1d726eaeaf86f74247) pages. |
+| `chrome://net-internals/#events` | **Live viewer retired** | The Events tab shows a removal notice. Other `net-internals` tabs remain available. Use `chrome://net-export` to capture a NetLog. |
 | `chrome://internals` | **Not a hub** | Use the implemented `chrome://internals/session-service` subpath. |
 | `chrome://traces-internals` | **Legacy alias** | Prefer `chrome://traces`; `chrome://tracing` remains a separate internal-debug UI. |
 | `chrome://legion-internals` | **Renamed** | Current name: `chrome://private-ai-internals` ([rename change](https://chromium.googlesource.com/chromium/src/+/302fb77ae999a6cc3fa256d88d005f55402852bb)). |
-| `chrome://topics-internals` | Registered but disabled in the Chrome 151 capture | Chrome 151-only/outgoing; removed from Chrome 152 Beta and current Chromium. |
-| `chrome://attribution-internals` | Registered but disabled in the Chrome 151 capture | Chrome 151-only/outgoing; removed from Chrome 152 Beta and current Chromium. |
-| `chrome://private-aggregation-internals` | Available in the Chrome 151 capture | Chrome 151-only/outgoing; removed from Chrome 152 Beta and current Chromium. |
 
 `chrome://apps` remains an app-home WebUI. Legacy packaged Chrome Apps have a
 separate, phased ChromeOS retirement schedule; see Google's
 [Chrome Apps support timeline](https://support.google.com/chrome/a/answer/15950395)
 instead of treating the whole page as removed.
 
-## Commands for Debug — do not run casually
+## Command URLs for Debug
 
 > [!WARNING]
 > The commands below deliberately crash, kill, hang, restart, or apply memory
@@ -298,83 +304,60 @@ instead of treating the whole page as removed.
 | `chrome://hang`, `chrome://shorthang` | Induce renderer hangs. |
 | `chrome://gpuclean`, `chrome://gpucrash`, `chrome://gpuhang` | Exercise GPU reset/crash/hang paths. |
 | `chrome://memory-exhaust`, `chrome://memory-pressure-critical`, `chrome://memory-pressure-moderate` | Exhaust memory or simulate memory-pressure levels. |
+| `chrome://blink-oom`, `chrome://blink-oom/worker`, `chrome://v8-oom` | Out-of-memory diagnostics listed for Blink and V8. |
 | `chrome://webuijserror` | Raise a WebUI JavaScript error. |
 | `chrome://quit`, `chrome://restart` | Quit or restart the entire browser. |
 
-Other commands exist only on particular platforms/builds. For example, current
-source has additional Windows heap-corruption/CFG crash paths. Trust the
-Commands for Debug section shown by your own installation.
+The command list varies by platform and build. Your installation shows its
+own set under **Command URLs for Debug**.
 
-## Chromium main: upcoming, not Chrome 151
+## Chromium development preview
 
-The July 30 Chromium main checkout identifies itself as Chrome 153 and includes
-hosts not present in the Stable 151 capture:
-
-| URL | Status | Note |
-| --- | --- | --- |
-| `chrome://notebooks-internals` | Upstream only | New internal Notebooks diagnostics; initial implementation is still minimal. |
-| `chrome://iwa-dev` | Upstream only | Isolated Web Apps developer dashboard, subject to feature/dev-mode support. |
-| `chrome://organizer-panel.top-chrome` | Upstream only / Flow | Browser-owned organizer panel surface, not a general diagnostic page. |
-
-This section is informational. Upstream registrations can change before they
-reach Stable. These hosts were verified in the pinned
-[Chromium main WebUI registrations](https://chromium.googlesource.com/chromium/src/+/96dfd842b1413173623925072864a326d629577d/chrome/browser/ui/webui/chrome_web_ui_configs.cc).
+`chrome://craft` is **upstream only**. The November 23 Chromium main revision
+(Chrome 160 development) registers this desktop page behind the Craft feature.
+Chrome 158 has no corresponding registration.
+[Pinned development registration](https://chromium.googlesource.com/chromium/src/+/567b985b342dbd46faf32b83d25accbf287259dd/chrome/browser/ui/webui/chrome_web_ui_configs.cc#375) ·
+[Craft feature check](https://chromium.googlesource.com/chromium/src/+/567b985b342dbd46faf32b83d25accbf287259dd/chrome/browser/ui/webui/craft/craft_ui.cc).
 
 ## Edge and Brave
 
-- **Microsoft Edge:** use `edge://edge-urls`.
-- **Brave:** use `brave://chrome-urls` or its browser-provided alias.
+- **Microsoft Edge** lists its pages at `edge://edge-urls`.
+- **Brave** lists its pages at `brave://chrome-urls`. [Brave's list implementation](https://github.com/brave/brave-core/blob/89d7419b40e907125dc4713e81cd4af4211beb71/chromium_src/components/webui/chrome_urls/resources/app.html.ts.lit_mangler.ts).
 
 Chromium derivatives add, remove, rename, and gate their own pages. A Chrome
 status in this guide must not be treated as an Edge or Brave guarantee.
 
 ## Verification and primary sources
 
-The update process uses runtime observation first, then pinned source and
-official documentation:
+Google's release records identify the Stable build. The running browser and
+the matching Chromium tag establish which menus it lists.
 
-- [Chrome Releases](https://chromereleases.googleblog.com/) and
-  [Chromium Dash](https://chromiumdash.appspot.com/releases?platform=Mac) for
-  current channel/version data.
+- [Chrome Releases](https://chromereleases.googleblog.com/),
+  [Google's VersionHistory API](https://developer.chrome.com/docs/web-platform/versionhistory/guide),
+  and [Chromium Dash](https://chromiumdash.appspot.com/releases?platform=Mac)
+  for desktop versions and staged rollouts.
 - [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/)
   for official versioned test binaries and channel metadata.
-- [Chrome for Developers release notes](https://developer.chrome.com/release-notes)
-  and [Chrome 151 beta notes](https://developer.chrome.com/blog/chrome-151-beta)
-  for official release documentation.
+- [Chrome 158 release notes](https://chromestatus.com/release-notes/158)
+  and [Chrome Enterprise 158 release notes](https://chromeenterprise.google/resources/release-notes/?ver=158)
+  for platform changes and enterprise rollout details.
 - [Chrome flags documentation](https://developer.chrome.com/docs/web-platform/chrome-flags)
   and [Chrome Help's flags warning](https://support.google.com/chrome/answer/16552482).
-- Chrome Help for
+- Chrome Help for [checking for updates](https://support.google.com/chrome/answer/95414),
   [performance features](https://support.google.com/chrome/answer/12929150)
   and Chrome for Developers on
   [debugging built-in AI models](https://developer.chrome.com/docs/ai/debug-built-in-model).
-- Chrome 151
-  [WebUI registrations](https://chromium.googlesource.com/chromium/src/+/refs/tags/151.0.7922.71/chrome/browser/ui/webui/chrome_web_ui_configs.cc),
-  [content registrations](https://chromium.googlesource.com/chromium/src/+/refs/tags/151.0.7922.71/content/browser/webui/content_web_ui_configs.cc),
-  [URL constants](https://chromium.googlesource.com/chromium/src/+/refs/tags/151.0.7922.71/chrome/common/webui_url_constants.cc),
-  and [debug URL definitions](https://chromium.googlesource.com/chromium/src/+/refs/tags/151.0.7922.71/third_party/blink/public/common/chrome_debug_urls.h).
-- The
-  [`chrome://chrome-urls` handler](https://chromium.googlesource.com/chromium/src/+/refs/tags/151.0.7922.71/chrome/browser/ui/webui/chrome_urls/chrome_urls_handler.cc),
-  which builds the runtime groups from active WebUI configurations.
-- The Chrome 151
-  [`internals` implementation](https://chromium.googlesource.com/chromium/src/+/refs/tags/151.0.7922.71/chrome/browser/ui/webui/internals/internals_ui.cc)
-  and
-  [Local Traces alias documentation](https://chromium.googlesource.com/chromium/src/+/refs/tags/151.0.7922.71/content/browser/tracing/traces_internals/traces_internals_ui.h).
-- Chromium's
-  [InternalWebUIConfig contract](https://chromium.googlesource.com/chromium/src/+/refs/tags/151.0.7922.71/content/public/browser/internal_webui_config.h)
-  and [WebUI guidance](https://chromium.googlesource.com/website/+/HEAD/site/developers/webui/index.md).
-- The Privacy Sandbox Internals removal sequence:
-  [handler cleanup](https://chromium.googlesource.com/chromium/src/+/3ca8d4ce090241400a1d54d49cbd2ea0477f9c10)
-  and
-  [post-removal flag cleanup](https://chromium.googlesource.com/chromium/src/testing/+/25a9c6b7f82c06fb46abc59eaf2fa684b2cb556d).
-- The
-  [Topics removal](https://chromium.googlesource.com/chromium/src/+/a99ca4de8389ef68b9c8acd247517c4fa659738a),
-  [Attribution removal](https://chromium.googlesource.com/chromium/src/+/de212a08955ad79b0d64edfb9cb2edf6ad5428d0),
-  and
-  [Private Aggregation removal](https://chromium.googlesource.com/chromium/src/+/063a5015ed40740a35d8bc1d726eaeaf86f74247)
-  for version-sensitive removals.
-- [NetLog documentation](https://chromium.googlesource.com/website/+/HEAD/site/developers/design-documents/network-stack/netlog/index.md)
-  and the Chrome 151
-  [`net-internals` implementation](https://chromium.googlesource.com/chromium/src/+/refs/tags/151.0.7922.71/chrome/browser/ui/webui/net_internals/net_internals_ui.cc).
+- The Chrome 158 [browser registrations](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/chrome/browser/ui/webui/chrome_web_ui_configs.cc),
+  [content registrations](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/content/browser/webui/content_web_ui_configs.cc),
+  [command list](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/chrome/common/webui_url_constants.cc),
+  and [debug URL definitions](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/third_party/blink/public/common/chrome_debug_urls.h).
+- The [list handler](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/chrome/browser/ui/webui/chrome_urls/chrome_urls_handler.cc)
+  and [list UI](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/components/webui/chrome_urls/resources/app.ts)
+  show how Chrome groups entries and applies the master toggle.
+- The [Session Service route](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/chrome/browser/ui/webui/internals/internals_ui.cc),
+  [Local Traces alias](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/content/browser/tracing/traces_internals/traces_internals_ui.h),
+  and [network diagnostics](https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.36/chrome/browser/ui/webui/net_internals/net_internals_ui.cc)
+  document the special routes in this guide.
 
 Contributions should include reproducible version, platform, runtime-group, and
 source evidence. See [CONTRIBUTING.md](CONTRIBUTING.md).
